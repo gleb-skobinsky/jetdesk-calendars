@@ -5,26 +5,26 @@ import java.time.LocalDateTime
 import java.time.Month
 import java.util.*
 
-internal fun LocalDateTime?.displayDate() =
+internal fun LocalDateTime.displayDate() =
     "${
-        this?.dayOfMonth.trailZeros() ?: "дд"
+        this.dayOfMonth.trailZeros()
     }${
-        this?.month?.value.trailZeros() ?: "мм"
+        this.month.value.trailZeros()
     }${
-        this?.year ?: "гггг"
+        this.year
     }"
 
-internal fun LocalDateTime?.displayDateTime() =
+internal fun LocalDateTime.displayDateTime() =
     "${
-        this?.dayOfMonth.trailZeros() ?: "дд"
+        this.dayOfMonth.trailZeros()
     }${
-        this?.month?.value.trailZeros() ?: "мм"
+        this.month?.value.trailZeros()
     }${
-        this?.year ?: "гггг"
+        this.year
     }${
-        this?.hour ?: "--"
+        this.hour
     }${
-        this?.minute ?: "--"
+        this.minute
     }"
 
 internal fun Int?.trailZeros() = this?.toString()?.padStart(2, '0')
@@ -48,3 +48,9 @@ internal fun Month.toLocale(locale: DateInoutDefaults.DateInputLocale) = when (l
     DateInoutDefaults.DateInputLocale.EN -> this.name.lowercase().replaceFirstChar { it.titlecase(Locale.getDefault()) }
 }
 
+fun getApplyText(locale: DateInoutDefaults.DateInputLocale): String {
+    return when (locale) {
+        DateInoutDefaults.DateInputLocale.RU -> "Применить"
+        DateInoutDefaults.DateInputLocale.EN -> "Apply"
+    }
+}

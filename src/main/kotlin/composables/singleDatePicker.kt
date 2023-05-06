@@ -26,7 +26,7 @@ fun DatePicker(
     calendarBackground: Color = selected,
     onDateSelected: (List<LocalDateTime?>) -> Unit,
 ) {
-    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.SINGLE_DATE)) }
+    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.SINGLE_DATE, locale)) }
     GenericCalendarInput(
         dateHolder = dateHolder,
         modifier = modifier,

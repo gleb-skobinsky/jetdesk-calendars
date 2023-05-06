@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dateTypes.DateInput
+import stringAnnotation.getApplyText
 import styles.DateInoutDefaults
 import styles.getPointerCursor
 import java.time.LocalDateTime
@@ -36,7 +37,7 @@ fun Calendar(
     onDateSelected: (List<LocalDateTime?>) -> Unit,
     errorMessage: MutableState<String?>,
     background: Color,
-    locale: DateInoutDefaults.DateInputLocale
+    locale: DateInoutDefaults.DateInputLocale,
 ) {
     Row(
         modifier = Modifier
@@ -109,7 +110,7 @@ fun Calendar(
             .getPointerCursor()
     ) {
         Text(
-            "Применить",
+            getApplyText(locale),
             color = Color.White,
             modifier = Modifier
         )

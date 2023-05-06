@@ -26,7 +26,7 @@ fun DateRangePicker(
     calendarBackground: Color = selected,
     onDateSelected: (List<LocalDateTime?>) -> Unit,
 ) {
-    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.DATE_RANGE)) }
+    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.DATE_RANGE, locale)) }
     GenericCalendarInput(
         dateHolder = dateHolder,
         modifier = modifier,

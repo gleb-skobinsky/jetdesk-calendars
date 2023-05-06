@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import stringAnnotation.displayDate
 import stringAnnotation.displayDateTime
+import styles.DateInoutDefaults
 import java.time.LocalDateTime
 
 sealed class DateInput {
@@ -27,9 +28,9 @@ sealed class DateInput {
 
     fun displayInput(): String {
         return when (this) {
-            is DateRange -> "${startDate.value.displayDate()}${endDate.value.displayDate()}"
-            is SingleDate -> date.value.displayDate()
-            is SingleDateTime -> dateTime.value.displayDateTime()
+            is DateRange -> if (startDate.value != null && endDate.value != null) "${startDate.value!!.displayDate()}${endDate.value!!.displayDate()}" else format
+            is SingleDate -> date.value?.displayDate() ?: format
+            is SingleDateTime -> dateTime.value?.displayDateTime() ?: format
         }
     }
 
@@ -92,6 +93,7 @@ sealed class DateInput {
                 val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
                 return actualDate == current
             }
+
             is SingleDateTime -> {
                 val (actualDateTime) = getResult()
                 if (actualDateTime == null) return false
@@ -180,6 +182,7 @@ sealed class DateInput {
                     true
                 } else false
             }
+
             is SingleDateTime -> TODO()
         }
 
@@ -187,11 +190,19 @@ sealed class DateInput {
 }
 
 
-fun initializeInput(type: DateTypes): DateInput {
-    return when (type) {
-        DateTypes.DATE_RANGE -> DateInput.DateRange()
-        DateTypes.SINGLE_DATE -> DateInput.SingleDate()
-        DateTypes.SINGLE_DATETIME -> DateInput.SingleDateTime()
+fun initializeInput(type: DateTypes, locale: DateInoutDefaults.DateInputLocale): DateInput {
+    return when (locale) {
+        DateInoutDefaults.DateInputLocale.EN -> when (type) {
+            DateTypes.DATE_RANGE -> DateInput.DateRange("ddmmyyyyddmmyyyy")
+            DateTypes.SINGLE_DATE -> DateInput.SingleDate("ddmmyyyy")
+            DateTypes.SINGLE_DATETIME -> DateInput.SingleDateTime("ddmmyyyy----")
+        }
+
+        DateInoutDefaults.DateInputLocale.RU -> when (type) {
+            DateTypes.DATE_RANGE -> DateInput.DateRange("ддммггггддммгггг")
+            DateTypes.SINGLE_DATE -> DateInput.SingleDate("ддммгггг")
+            DateTypes.SINGLE_DATETIME -> DateInput.SingleDateTime("ддммгггг----")
+        }
     }
 }
 
