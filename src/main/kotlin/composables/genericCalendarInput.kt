@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import dateTypes.DateInput
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import styles.getBorderModifier
 import styles.getPointerCursor
 import java.time.LocalDateTime
@@ -39,13 +39,13 @@ import java.time.LocalDateTime
 fun GenericCalendarInput(
     dateHolder: MutableState<DateInput>,
     modifier: Modifier,
-    colors: DateInoutDefaults.DateInputColors,
-    borders: DateInoutDefaults.DateInputBorders,
+    colors: DateInputDefaults.DateInputColors,
+    borders: DateInputDefaults.DateInputBorders,
     iconColor: Color,
     onDateSelected: (List<LocalDateTime?>) -> Unit,
     errorMessage: String,
     calendarBackground: Color,
-    locale: DateInoutDefaults.DateInputLocale,
+    locale: DateInputDefaults.DateInputLocale,
     mask: VisualTransformation,
 ) {
     val popupOpened = remember { mutableStateOf(false) }

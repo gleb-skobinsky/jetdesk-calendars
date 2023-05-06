@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import dateTypes.DateTypes
 import dateTypes.initializeInput
 import inputMask.DateRangeMaskTransformation
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import styles.enabled
 import styles.getDefaultErrorMessage
 import styles.selected
@@ -18,9 +18,9 @@ import java.time.LocalDateTime
 @Suppress("FunctionName")
 fun DateRangePicker(
     modifier: Modifier = Modifier,
-    colors: DateInoutDefaults.DateInputColors = DateInoutDefaults.DateInputColors(),
-    borders: DateInoutDefaults.DateInputBorders = DateInoutDefaults.DateInputBorders(),
-    locale: DateInoutDefaults.DateInputLocale = DateInoutDefaults.DateInputLocale.EN,
+    colors: DateInputDefaults.DateInputColors = DateInputDefaults.DateInputColors(),
+    borders: DateInputDefaults.DateInputBorders = DateInputDefaults.DateInputBorders(),
+    locale: DateInputDefaults.DateInputLocale = DateInputDefaults.DateInputLocale.EN,
     errorMessage: String = getDefaultErrorMessage(locale),
     iconColor: Color = enabled,
     calendarBackground: Color = selected,

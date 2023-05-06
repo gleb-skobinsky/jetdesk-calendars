@@ -1,6 +1,6 @@
 package stringAnnotation
 
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import java.time.LocalDateTime
 import java.time.Month
 import java.util.*
@@ -29,8 +29,8 @@ internal fun LocalDateTime.displayDateTime() =
 
 internal fun Int?.trailZeros() = this?.toString()?.padStart(2, '0')
 
-internal fun Month.toLocale(locale: DateInoutDefaults.DateInputLocale) = when (locale) {
-    DateInoutDefaults.DateInputLocale.RU -> when (this) {
+internal fun Month.toLocale(locale: DateInputDefaults.DateInputLocale) = when (locale) {
+    DateInputDefaults.DateInputLocale.RU -> when (this) {
         Month.JANUARY -> "января"
         Month.FEBRUARY -> "февраля"
         Month.MARCH -> "марта"
@@ -45,12 +45,12 @@ internal fun Month.toLocale(locale: DateInoutDefaults.DateInputLocale) = when (l
         Month.DECEMBER -> "декабря"
     }
 
-    DateInoutDefaults.DateInputLocale.EN -> this.name.lowercase().replaceFirstChar { it.titlecase(Locale.getDefault()) }
+    DateInputDefaults.DateInputLocale.EN -> this.name.lowercase().replaceFirstChar { it.titlecase(Locale.getDefault()) }
 }
 
-fun getApplyText(locale: DateInoutDefaults.DateInputLocale): String {
+fun getApplyText(locale: DateInputDefaults.DateInputLocale): String {
     return when (locale) {
-        DateInoutDefaults.DateInputLocale.RU -> "Применить"
-        DateInoutDefaults.DateInputLocale.EN -> "Apply"
+        DateInputDefaults.DateInputLocale.RU -> "Применить"
+        DateInputDefaults.DateInputLocale.EN -> "Apply"
     }
 }

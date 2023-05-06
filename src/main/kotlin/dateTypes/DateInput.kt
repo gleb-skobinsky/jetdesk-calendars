@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import stringAnnotation.displayDate
 import stringAnnotation.displayDateTime
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import java.time.LocalDateTime
 
 sealed class DateInput {
@@ -190,15 +190,15 @@ sealed class DateInput {
 }
 
 
-fun initializeInput(type: DateTypes, locale: DateInoutDefaults.DateInputLocale): DateInput {
+fun initializeInput(type: DateTypes, locale: DateInputDefaults.DateInputLocale): DateInput {
     return when (locale) {
-        DateInoutDefaults.DateInputLocale.EN -> when (type) {
+        DateInputDefaults.DateInputLocale.EN -> when (type) {
             DateTypes.DATE_RANGE -> DateInput.DateRange("ddmmyyyyddmmyyyy")
             DateTypes.SINGLE_DATE -> DateInput.SingleDate("ddmmyyyy")
             DateTypes.SINGLE_DATETIME -> DateInput.SingleDateTime("ddmmyyyy----")
         }
 
-        DateInoutDefaults.DateInputLocale.RU -> when (type) {
+        DateInputDefaults.DateInputLocale.RU -> when (type) {
             DateTypes.DATE_RANGE -> DateInput.DateRange("ддммггггддммгггг")
             DateTypes.SINGLE_DATE -> DateInput.SingleDate("ддммгггг")
             DateTypes.SINGLE_DATETIME -> DateInput.SingleDateTime("ддммгггг----")

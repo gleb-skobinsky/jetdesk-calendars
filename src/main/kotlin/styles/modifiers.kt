@@ -16,8 +16,8 @@ import java.awt.Cursor
 internal fun Modifier.getBorderModifier(
     focused: Boolean,
     dateHolder: DateInput,
-    colors: DateInoutDefaults.DateInputColors,
-    borders: DateInoutDefaults.DateInputBorders,
+    colors: DateInputDefaults.DateInputColors,
+    borders: DateInputDefaults.DateInputBorders,
 ) = when (dateHolder) {
     is DateInput.DateRange -> {
         if (focused) {
@@ -76,7 +76,7 @@ fun Modifier.notEmptyFieldBorder(border: BorderSpecs) = this.border(
     shape = RectangleShape
 )
 
-class DateInoutDefaults {
+class DateInputDefaults {
     data class DateInputColors(
         val emptyColor: Color = inactiveFilterColor,
         val focusedColor: Color = background,
@@ -95,9 +95,9 @@ class DateInoutDefaults {
     }
 }
 
-fun getDefaultErrorMessage(locale: DateInoutDefaults.DateInputLocale) = when (locale) {
-    DateInoutDefaults.DateInputLocale.EN -> "Wrong dates"
-    DateInoutDefaults.DateInputLocale.RU -> "Неверные даты"
+fun getDefaultErrorMessage(locale: DateInputDefaults.DateInputLocale) = when (locale) {
+    DateInputDefaults.DateInputLocale.EN -> "Wrong dates"
+    DateInputDefaults.DateInputLocale.RU -> "Неверные даты"
 }
 
 data class BorderSpecs(

@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dateTypes.DateInput
 import stringAnnotation.getApplyText
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import styles.getPointerCursor
 import java.time.LocalDateTime
 
@@ -37,7 +37,7 @@ fun Calendar(
     onDateSelected: (List<LocalDateTime?>) -> Unit,
     errorMessage: MutableState<String?>,
     background: Color,
-    locale: DateInoutDefaults.DateInputLocale,
+    locale: DateInputDefaults.DateInputLocale,
 ) {
     Row(
         modifier = Modifier

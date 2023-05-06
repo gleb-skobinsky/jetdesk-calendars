@@ -14,13 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import stringAnnotation.toLocale
-import styles.DateInoutDefaults
+import styles.DateInputDefaults
 import styles.getPointerCursor
 import java.time.LocalDateTime
 
 @Composable
 @Suppress("FunctionName")
-internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>, locale: DateInoutDefaults.DateInputLocale) {
+internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>, locale: DateInputDefaults.DateInputLocale) {
     Icon(
         Icons.Outlined.ChevronLeft,
         "Previous month",

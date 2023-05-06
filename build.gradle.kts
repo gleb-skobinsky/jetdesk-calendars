@@ -3,6 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
+    `maven-publish`
 }
 
 repositories {
@@ -21,6 +22,22 @@ dependencies {
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.common)
     implementation(compose.materialIconsExtended)
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.glebg.jetdeskcalendars"
+            artifactId = "jetdeskcalendars"
+            version = "1.0"
+
+            from(components["java"])
+        }
+    }
 }
 
 compose.desktop {
