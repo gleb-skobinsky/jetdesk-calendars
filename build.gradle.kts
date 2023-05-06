@@ -25,10 +25,6 @@ dependencies {
 }
 
 publishing {
-    repositories {
-        mavenLocal()
-    }
-
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.glebg.jetdeskcalendars"
