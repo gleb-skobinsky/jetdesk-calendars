@@ -183,7 +183,22 @@ sealed class DateInput {
                 } else false
             }
 
-            is SingleDateTime -> TODO()
+            is SingleDateTime -> {
+                if (fieldValue.length == format.length) {
+                    val day1 = fieldValue.substring(0..1).toInt()
+                    val month1 = fieldValue.substring(2..3).toInt()
+                    val year1 = fieldValue.substring(4..7).toInt()
+                    val hour1 = fieldValue.substring(8..9).toInt()
+                    val minute1 = fieldValue.substring(10..11).toInt()
+                    try {
+                        val insertedDateTime = LocalDateTime.of(year1, month1, day1, hour1, minute1)
+                        dateTime.value = insertedDateTime
+                    } catch (e: Exception) {
+                        errorMessage.value = defaultErrorMessage
+                    }
+                    true
+                } else false
+            }
         }
 
     }
