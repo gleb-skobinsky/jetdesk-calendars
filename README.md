@@ -10,7 +10,8 @@ DateRangePicker { (startDate, endDate) ->
     println("$startDate $endDate")
 }
 ```
-Default view:
+Interface view:
+
 ![Date range picker](https://raw.githubusercontent.com/gleb-skobinsky/jetdesk-calendars/main/images/daterange.png)
 
 2. Single date picker: allows to select a single date from the calendar
@@ -21,7 +22,8 @@ DatePicker { (date) ->
     println(date)
 }
 ```
-Default view:
+Interface view:
+
 ![Date picker](https://raw.githubusercontent.com/gleb-skobinsky/jetdesk-calendars/main/images/date.png)
 
 3. Single date-time picker: sorry, not yet implemented!
