@@ -45,12 +45,11 @@ fun DatePicker(
     calendarBackground: Color = selected,
     onDateSelected: (List<LocalDateTime?>) -> Unit,
 ) {
+    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.SINGLE_DATE)) }
+
     val popupOpened = remember { mutableStateOf(false) }
     var focused by remember { mutableStateOf(false) }
     val dateTime = remember { mutableStateOf(LocalDateTime.now()) }
-
-    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.SINGLE_DATE)) }
-
     var actualFieldValue by remember(dateHolder.value.getResult()) {
         mutableStateOf(
             dateHolder.value.displayInput()

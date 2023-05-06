@@ -35,7 +35,7 @@ import java.time.LocalDateTime
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Suppress("FunctionName")
-fun DateSpanPicker(
+fun DateRangePicker(
     modifier: Modifier = Modifier,
     colors: DateInoutDefaults.DateInputColors = DateInoutDefaults.DateInputColors(),
     borders: DateInoutDefaults.DateInputBorders = DateInoutDefaults.DateInputBorders(),

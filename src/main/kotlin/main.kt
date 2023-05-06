@@ -14,7 +14,7 @@ import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import composables.DatePicker
-import composables.DateSpanPicker
+import composables.DateRangePicker
 
 @Composable
 @Preview
@@ -24,7 +24,7 @@ fun App() {
             Modifier.width(600.dp)
         ) {
             Text("Date range picker demo", fontSize = 24.sp)
-            DateSpanPicker { (startDate, endDate) ->
+            DateRangePicker { (startDate, endDate) ->
                 println("$startDate $endDate")
             }
             Spacer(Modifier.height(20.dp))
