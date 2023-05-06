@@ -11,7 +11,7 @@ DateRangePicker { (startDate, endDate) ->
 }
 ```
 
-2. Single date picker: allows to select a single date from calendar
+2. Single date picker: allows to select a single date from the calendar
 
 **Usage:**
 ```kotlin
