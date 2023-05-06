@@ -11,7 +11,7 @@ repositories {
     google()
 }
 
-group = "jetdesk-calendars"
+group = "jetdeskcalendars"
 version = 1.0
 
 dependencies {
