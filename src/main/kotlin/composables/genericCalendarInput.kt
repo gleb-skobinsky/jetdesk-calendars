@@ -66,6 +66,7 @@ fun GenericCalendarInput(
     val errorMessageState = remember { mutableStateOf<String?>(null) }
 
     Column(Modifier.height(0.dp).focusRequester(groundFieldFocusRequester)) {}
+
     Column {
         BasicTextField(
             value = actualFieldValue,
