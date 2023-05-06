@@ -11,6 +11,9 @@ repositories {
     google()
 }
 
+group = "gleb-skobinsky.jetdesk-calendars"
+version = 1.0
+
 dependencies {
     // Note, if you develop a library, you should use compose.desktop.common.
     // compose.desktop.currentOs should be used in launcher-sourceSet
