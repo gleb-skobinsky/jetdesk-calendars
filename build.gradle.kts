@@ -11,7 +11,7 @@ repositories {
     google()
 }
 
-group = "gleb-skobinsky.jetdesk-calendars"
+group = "jetdesk-calendars"
 version = 1.0
 
 dependencies {
