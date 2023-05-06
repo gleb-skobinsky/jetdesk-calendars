@@ -1,8 +1,5 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,17 +17,23 @@ import composables.DateRangePicker
 @Preview
 fun App() {
     MaterialTheme {
-        Column(
-            Modifier.width(600.dp)
-        ) {
-            Text("Date range picker demo", fontSize = 24.sp)
-            DateRangePicker { (startDate, endDate) ->
-                println("$startDate $endDate")
+        Row(Modifier.padding(32.dp)) {
+            Column(
+                Modifier.width(500.dp)
+            ) {
+                Text("Date range picker demo", fontSize = 24.sp)
+                DateRangePicker { (startDate, endDate) ->
+                    println("$startDate $endDate")
+                }
             }
-            Spacer(Modifier.height(20.dp))
-            Text("Date picker demo", fontSize = 24.sp)
-            DatePicker { (date) ->
-                println(date)
+            Spacer(Modifier.width(32.dp))
+            Column(
+                Modifier.width(500.dp)
+            ) {
+                Text("Date picker demo", fontSize = 24.sp)
+                DatePicker { (date) ->
+                    println(date)
+                }
             }
         }
     }
