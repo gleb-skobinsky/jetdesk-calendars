@@ -28,14 +28,14 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import dateTypes.DateTypes
 import dateTypes.initializeInput
-import inputMask.DateRangeMaskTransformation
+import inputMask.DateMaskTransformation
 import styles.*
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Suppress("FunctionName")
-fun DateSpanPicker(
+fun DatePicker(
     modifier: Modifier = Modifier,
     colors: DateInoutDefaults.DateInputColors = DateInoutDefaults.DateInputColors(),
     borders: DateInoutDefaults.DateInputBorders = DateInoutDefaults.DateInputBorders(),
@@ -49,7 +49,7 @@ fun DateSpanPicker(
     var focused by remember { mutableStateOf(false) }
     val dateTime = remember { mutableStateOf(LocalDateTime.now()) }
 
-    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.DATE_RANGE)) }
+    val dateHolder = remember { mutableStateOf(initializeInput(DateTypes.SINGLE_DATE)) }
 
     var actualFieldValue by remember(dateHolder.value.getResult()) {
         mutableStateOf(
@@ -118,7 +118,7 @@ fun DateSpanPicker(
                 lineHeight = 16.sp,
                 lineHeightStyle = LineHeightStyle(LineHeightStyle.Alignment.Bottom, LineHeightStyle.Trim.None)
             ),
-            visualTransformation = DateRangeMaskTransformation(),
+            visualTransformation = DateMaskTransformation(),
             modifier = borderModifier
                 .fillMaxWidth()
                 .onFocusChanged {

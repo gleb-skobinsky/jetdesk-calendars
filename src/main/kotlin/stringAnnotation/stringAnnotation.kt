@@ -1,7 +1,9 @@
 package stringAnnotation
 
+import styles.DateInoutDefaults
 import java.time.LocalDateTime
 import java.time.Month
+import java.util.*
 
 internal fun LocalDateTime?.displayDate() =
     "${
@@ -27,19 +29,22 @@ internal fun LocalDateTime?.displayDateTime() =
 
 internal fun Int?.trailZeros() = this?.toString()?.padStart(2, '0')
 
-const val dateForm = "ддммггггддммгггг"
+internal fun Month.toLocale(locale: DateInoutDefaults.DateInputLocale) = when (locale) {
+    DateInoutDefaults.DateInputLocale.RU -> when (this) {
+        Month.JANUARY -> "января"
+        Month.FEBRUARY -> "февраля"
+        Month.MARCH -> "марта"
+        Month.APRIL -> "апреля"
+        Month.MAY -> "мая"
+        Month.JUNE -> "июня"
+        Month.JULY -> "июля"
+        Month.AUGUST -> "августа"
+        Month.SEPTEMBER -> "сентября"
+        Month.OCTOBER -> "октября"
+        Month.NOVEMBER -> "ноября"
+        Month.DECEMBER -> "декабря"
+    }
 
-internal fun Month.toRu() = when (this) {
-    Month.JANUARY -> "Января"
-    Month.FEBRUARY -> "Февраля"
-    Month.MARCH -> "Марта"
-    Month.APRIL -> "Апреля"
-    Month.MAY -> "Мая"
-    Month.JUNE -> "Июня"
-    Month.JULY -> "Июля"
-    Month.AUGUST -> "Августа"
-    Month.SEPTEMBER -> "Сентября"
-    Month.OCTOBER -> "Октября"
-    Month.NOVEMBER -> "Ноября"
-    Month.DECEMBER -> "Декабря"
+    DateInoutDefaults.DateInputLocale.EN -> this.name.lowercase().replaceFirstChar { it.titlecase(Locale.getDefault()) }
 }
+

@@ -14,6 +14,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dateTypes.DateInput
+import styles.DateInoutDefaults
 import java.time.LocalDateTime
 
 @Composable
@@ -26,6 +27,7 @@ fun CalendarSpanPopup(
     onDateSelected: (List<LocalDateTime?>) -> Unit,
     errorMessage: MutableState<String?>,
     background: Color,
+    locale: DateInoutDefaults.DateInputLocale
 ) {
     Surface(
         elevation = 12.dp,
@@ -39,14 +41,15 @@ fun CalendarSpanPopup(
                 .width(304.dp)
                 .padding(bottom = 12.dp, top = 6.dp, start = 12.dp, end = 12.dp)
         ) {
-            SpanCalendar(
+            Calendar(
                 dateTime = dateTime,
                 dateHolder = dateHolder,
                 groundFieldFocusRequester = groundFieldFocusRequester,
                 popupOpened = popupOpened,
                 onDateSelected = onDateSelected,
                 errorMessage = errorMessage,
-                background = background
+                background = background,
+                locale = locale
             )
         }
     }

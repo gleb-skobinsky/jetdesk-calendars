@@ -2,7 +2,6 @@ package dateTypes
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import composables.getLastDayOfMonth
 import stringAnnotation.displayDate
 import stringAnnotation.displayDateTime
 import java.time.LocalDateTime
@@ -75,17 +74,30 @@ sealed class DateInput {
     }
 
     fun checkIfSelected(date: Int, dateTime: MutableState<LocalDateTime>): Boolean {
-        return when (this) {
+        when (this) {
             is DateRange -> {
                 val (actualDateStart, actualDateEnd) = getResult()
-                if (actualDateStart != null && actualDateEnd != null && date in 1..dateTime.value.getLastDayOfMonth()) {
-                    val current = dateTime.value.withDayOfMonth(date)
-                    current.isAfter(startDate.value) && current.isBefore(endDate.value)
-                } else false
+                if (actualDateStart == null) return false
+                if (actualDateEnd == null) {
+                    val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
+                    return actualDateStart == current
+                }
+                val current = dateTime.value.withDayOfMonth(date)
+                return current.isAfter(startDate.value) && current.isBefore(endDate.value)
             }
 
-            is SingleDate -> false
-            is SingleDateTime -> false
+            is SingleDate -> {
+                val (actualDate) = getResult()
+                if (actualDate == null) return false
+                val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
+                return actualDate == current
+            }
+            is SingleDateTime -> {
+                val (actualDateTime) = getResult()
+                if (actualDateTime == null) return false
+                val current = dateTime.value.withDayOfMonth(date)
+                return actualDateTime == current
+            }
         }
     }
 
@@ -154,7 +166,20 @@ sealed class DateInput {
 
             }
 
-            is SingleDate -> TODO()
+            is SingleDate -> {
+                if (fieldValue.length == format.length) {
+                    val day1 = fieldValue.substring(0..1).toInt()
+                    val month1 = fieldValue.substring(2..3).toInt()
+                    val year1 = fieldValue.substring(4..7).toInt()
+                    try {
+                        val insertedDateTime = LocalDateTime.of(year1, month1, day1, 0, 0)
+                        date.value = insertedDateTime
+                    } catch (e: Exception) {
+                        errorMessage.value = defaultErrorMessage
+                    }
+                    true
+                } else false
+            }
             is SingleDateTime -> TODO()
         }
 

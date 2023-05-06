@@ -13,13 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import stringAnnotation.toRu
+import stringAnnotation.toLocale
+import styles.DateInoutDefaults
 import styles.getPointerCursor
 import java.time.LocalDateTime
 
 @Composable
 @Suppress("FunctionName")
-internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>) {
+internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>, locale: DateInoutDefaults.DateInputLocale) {
     Icon(
         Icons.Outlined.ChevronLeft,
         "Previous month",
@@ -31,7 +32,7 @@ internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>) {
             }
     )
     Text(
-        "${initialDate.value.dayOfMonth} ${initialDate.value.month.toRu()} ${initialDate.value.year}",
+        "${initialDate.value.dayOfMonth} ${initialDate.value.month.toLocale(locale)} ${initialDate.value.year}",
         color = Color.White,
         modifier = Modifier.width(150.dp),
         textAlign = TextAlign.Center

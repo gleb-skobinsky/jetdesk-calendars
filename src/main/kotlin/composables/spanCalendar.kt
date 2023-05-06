@@ -21,13 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dateTypes.DateInput
+import styles.DateInoutDefaults
 import styles.getPointerCursor
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Suppress("FunctionName")
-fun SpanCalendar(
+fun Calendar(
     dateTime: MutableState<LocalDateTime>,
     dateHolder: MutableState<DateInput>,
     groundFieldFocusRequester: FocusRequester,
@@ -35,6 +36,7 @@ fun SpanCalendar(
     onDateSelected: (List<LocalDateTime?>) -> Unit,
     errorMessage: MutableState<String?>,
     background: Color,
+    locale: DateInoutDefaults.DateInputLocale
 ) {
     Row(
         modifier = Modifier
@@ -43,7 +45,7 @@ fun SpanCalendar(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        CalendarHeader(dateTime)
+        CalendarHeader(dateTime, locale)
     }
     val dates = dateTime.value.getMonthGrid()
     Column(
