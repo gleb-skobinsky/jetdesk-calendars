@@ -3,7 +3,6 @@ package dateTypes
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import composables.getLastDayOfMonth
-import stringAnnotation.dateForm
 import stringAnnotation.displayDate
 import stringAnnotation.displayDateTime
 import java.time.LocalDateTime
@@ -71,26 +70,6 @@ sealed class DateInput {
                 listOf(
                     dateTime.value
                 )
-            }
-        }
-    }
-
-    fun setInput(values: List<LocalDateTime?>) {
-        when (this) {
-            is DateRange -> {
-                val (start, end) = values
-                startDate.value = start
-                startDate.value = end
-            }
-
-            is SingleDate -> {
-                val (newValue) = values
-                date.value = newValue
-            }
-
-            is SingleDateTime -> {
-                val (newValue) = values
-                dateTime.value = newValue
             }
         }
     }
@@ -174,6 +153,7 @@ sealed class DateInput {
                 } else false
 
             }
+
             is SingleDate -> TODO()
             is SingleDateTime -> TODO()
         }
