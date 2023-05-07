@@ -1,4 +1,4 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,8 +13,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import dateTypes.DateInput
-import styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.dateTypes.DateInput
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
 import java.time.LocalDateTime
 
 @Composable

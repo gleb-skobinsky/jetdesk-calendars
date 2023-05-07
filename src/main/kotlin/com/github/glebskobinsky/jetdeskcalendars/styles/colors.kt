@@ -1,4 +1,4 @@
-package styles
+package com.github.glebskobinsky.jetdeskcalendars.styles
 
 import androidx.compose.ui.graphics.Color
 

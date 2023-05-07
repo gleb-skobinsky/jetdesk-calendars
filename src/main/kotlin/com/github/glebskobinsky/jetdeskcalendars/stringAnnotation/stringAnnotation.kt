@@ -1,6 +1,6 @@
-package stringAnnotation
+package com.github.glebskobinsky.jetdeskcalendars.stringAnnotation
 
-import styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
 import java.time.LocalDateTime
 import java.time.Month
 import java.util.*
@@ -22,9 +22,9 @@ internal fun LocalDateTime.displayDateTime() =
     }${
         this.year
     }${
-        this.hour
+        this.hour.trailZeros()
     }${
-        this.minute
+        this.minute.trailZeros()
     }"
 
 internal fun Int?.trailZeros() = this?.toString()?.padStart(2, '0')
@@ -52,5 +52,25 @@ fun getApplyText(locale: DateInputDefaults.DateInputLocale): String {
     return when (locale) {
         DateInputDefaults.DateInputLocale.RU -> "Применить"
         DateInputDefaults.DateInputLocale.EN -> "Apply"
+    }
+}
+
+internal fun String.isValidValue(range: IntRange): Boolean {
+    if (isBlank()) {
+        return true
+    }
+    val hourAsInt = trim().toIntOrNull() ?: return false
+    return hourAsInt in range
+}
+
+internal fun String.isValidHour() = this.isValidValue(0..23)
+
+internal fun String.isValidMinute() = this.isValidValue(0..59)
+
+internal fun String.toTimeInt(): Int {
+    return if (isBlank()) {
+        0
+    } else {
+        trim().toInt()
     }
 }

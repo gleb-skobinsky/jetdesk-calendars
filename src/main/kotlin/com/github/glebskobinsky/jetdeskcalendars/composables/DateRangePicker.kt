@@ -1,17 +1,17 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import dateTypes.DateTypes
-import dateTypes.initializeInput
-import inputMask.DateRangeMaskTransformation
-import styles.DateInputDefaults
-import styles.enabled
-import styles.getDefaultErrorMessage
-import styles.selected
+import com.github.glebskobinsky.jetdeskcalendars.dateTypes.DateTypes
+import com.github.glebskobinsky.jetdeskcalendars.dateTypes.initializeInput
+import com.github.glebskobinsky.jetdeskcalendars.inputMask.DateRangeMaskTransformation
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.styles.enabled
+import com.github.glebskobinsky.jetdeskcalendars.styles.getDefaultErrorMessage
+import com.github.glebskobinsky.jetdeskcalendars.styles.selected
 import java.time.LocalDateTime
 
 @Composable

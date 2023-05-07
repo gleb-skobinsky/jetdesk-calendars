@@ -1,4 +1,4 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -27,10 +27,10 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
-import dateTypes.DateInput
-import styles.DateInputDefaults
-import styles.getBorderModifier
-import styles.getPointerCursor
+import com.github.glebskobinsky.jetdeskcalendars.dateTypes.DateInput
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.styles.getBorderModifier
+import com.github.glebskobinsky.jetdeskcalendars.styles.getPointerCursor
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -138,6 +138,8 @@ fun GenericCalendarInput(
                 .onKeyEvent {
                     if (it.key == Key.Enter && it.type == KeyEventType.KeyDown) {
                         dateHolder.value.parseStringAndSetInput(actualFieldValue, errorMessageState, onDateSelected, errorMessage)
+                        errorMessageState.value = null
+                        onDateSelected(dateHolder.value.getResult())
                         true
                     } else false
                 }
@@ -153,7 +155,10 @@ fun GenericCalendarInput(
     if (popupOpened.value) {
         Popup(
             popupPositionProvider = DesktopDropdownMenuPositionProvider(density = LocalDensity.current),
-            onDismissRequest = { popupOpened.value = false }
+            onDismissRequest = {
+                popupOpened.value = false
+            },
+            focusable = true
         ) {
             CalendarSpanPopup(
                 dateTime = dateTime,

@@ -1,4 +1,4 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import java.time.LocalDateTime
 

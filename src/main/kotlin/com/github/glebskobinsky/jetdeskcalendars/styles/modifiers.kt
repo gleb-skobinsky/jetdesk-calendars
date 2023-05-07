@@ -1,4 +1,4 @@
-package styles
+package com.github.glebskobinsky.jetdeskcalendars.styles
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,7 +10,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dateTypes.DateInput
+import com.github.glebskobinsky.jetdeskcalendars.dateTypes.DateInput
 import java.awt.Cursor
 
 internal fun Modifier.getBorderModifier(

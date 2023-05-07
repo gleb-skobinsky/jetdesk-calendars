@@ -1,10 +1,12 @@
-package dateTypes
+package com.github.glebskobinsky.jetdeskcalendars.dateTypes
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import stringAnnotation.displayDate
-import stringAnnotation.displayDateTime
-import styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.composables.CalendarWindowState
+import com.github.glebskobinsky.jetdeskcalendars.composables.getLastDayOfMonth
+import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.displayDate
+import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.displayDateTime
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
 import java.time.LocalDateTime
 
 sealed class DateInput {
@@ -83,6 +85,7 @@ sealed class DateInput {
                     val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
                     return actualDateStart == current
                 }
+                if (date > dateTime.value.getLastDayOfMonth()) return false
                 val current = dateTime.value.withDayOfMonth(date)
                 return current.isAfter(startDate.value) && current.isBefore(endDate.value)
             }
@@ -90,6 +93,7 @@ sealed class DateInput {
             is SingleDate -> {
                 val (actualDate) = getResult()
                 if (actualDate == null) return false
+                if (date > dateTime.value.getLastDayOfMonth()) return false
                 val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
                 return actualDate == current
             }
@@ -97,19 +101,20 @@ sealed class DateInput {
             is SingleDateTime -> {
                 val (actualDateTime) = getResult()
                 if (actualDateTime == null) return false
+                if (date > dateTime.value.getLastDayOfMonth()) return false
                 val current = dateTime.value.withDayOfMonth(date)
                 return actualDateTime == current
             }
         }
     }
 
-    fun select(dateInt: Int, dateTime: MutableState<LocalDateTime>) {
+    fun select(dateInt: Int, dateTimeTemp: MutableState<LocalDateTime>, windowState: MutableState<CalendarWindowState>) {
         when (this) {
             is DateRange -> {
                 if (startDate.value == null) {
-                    startDate.value = dateTime.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
+                    startDate.value = dateTimeTemp.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
                 } else {
-                    endDate.value = dateTime.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
+                    endDate.value = dateTimeTemp.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
                     val actualDateStart = startDate.value
                     val actualDateEnd = endDate.value
                     if (actualDateStart != null && actualDateEnd != null) {
@@ -125,13 +130,24 @@ sealed class DateInput {
             }
 
             is SingleDate -> {
-                date.value = dateTime.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
+                date.value = dateTimeTemp.value.withDayOfMonth(dateInt).withHour(0).withMinute(0)
             }
 
             is SingleDateTime -> {
-                dateTime.value = dateTime.value.withDayOfMonth(dateInt)
+                dateTime.value = dateTimeTemp.value.withDayOfMonth(dateInt)
+                windowState.value = CalendarWindowState.TIME
             }
         }
+    }
+
+    fun selectHourAndMinute(hour: Int, minute: Int) {
+        when (this) {
+            is SingleDateTime -> {
+                dateTime.value = dateTime.value?.withHour(hour)?.withMinute(minute)
+            }
+            else -> Unit
+        }
+
     }
 
     fun parseStringAndSetInput(
@@ -140,6 +156,7 @@ sealed class DateInput {
         onDateSelected: (List<LocalDateTime?>) -> Unit,
         defaultErrorMessage: String,
     ): Boolean {
+        println("Input type: ${this.format}")
         return when (this) {
             is DateRange -> {
                 if (fieldValue.length == format.length) {
@@ -194,6 +211,7 @@ sealed class DateInput {
                         val insertedDateTime = LocalDateTime.of(year1, month1, day1, hour1, minute1)
                         dateTime.value = insertedDateTime
                     } catch (e: Exception) {
+                        print("Failed to use datetime: ${e.message}")
                         errorMessage.value = defaultErrorMessage
                     }
                     true

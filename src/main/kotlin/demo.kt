@@ -10,8 +10,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import composables.DatePicker
-import composables.DateRangePicker
+import com.github.glebskobinsky.jetdeskcalendars.composables.DatePicker
+import com.github.glebskobinsky.jetdeskcalendars.composables.DateRangePicker
+import com.github.glebskobinsky.jetdeskcalendars.composables.DateTimePicker
 
 @Composable
 @Preview
@@ -33,6 +34,15 @@ fun App() {
                 Text("Date picker demo", fontSize = 24.sp)
                 DatePicker { (date) ->
                     println(date)
+                }
+            }
+            Spacer(Modifier.width(32.dp))
+            Column(
+                Modifier.width(500.dp)
+            ) {
+                Text("Datetime picker demo", fontSize = 24.sp)
+                DateTimePicker { (dateTime) ->
+                    println(dateTime)
                 }
             }
         }

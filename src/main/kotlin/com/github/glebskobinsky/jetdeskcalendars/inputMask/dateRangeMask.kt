@@ -1,4 +1,4 @@
-package inputMask
+package com.github.glebskobinsky.jetdeskcalendars.inputMask
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping

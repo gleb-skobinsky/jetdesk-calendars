@@ -1,4 +1,4 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.window.PopupPositionProvider

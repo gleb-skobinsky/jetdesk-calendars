@@ -1,4 +1,4 @@
-package composables
+package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.width
@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import stringAnnotation.toLocale
-import styles.DateInputDefaults
-import styles.getPointerCursor
+import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.toLocale
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.styles.getPointerCursor
 import java.time.LocalDateTime
 
 @Composable
