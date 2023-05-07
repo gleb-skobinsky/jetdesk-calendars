@@ -34,7 +34,7 @@ internal fun CalendarHeader(initialDate: MutableState<LocalDateTime>, locale: Da
     Text(
         "${initialDate.value.dayOfMonth} ${initialDate.value.month.toLocale(locale)} ${initialDate.value.year}",
         color = Color.White,
-        modifier = Modifier.width(150.dp),
+        modifier = Modifier.width(200.dp),
         textAlign = TextAlign.Center
     )
     Icon(

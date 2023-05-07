@@ -81,11 +81,11 @@ sealed class DateInput {
             is DateRange -> {
                 val (actualDateStart, actualDateEnd) = getResult()
                 if (actualDateStart == null) return false
+                if (date > dateTime.value.getLastDayOfMonth()) return false
                 if (actualDateEnd == null) {
                     val current = dateTime.value.withDayOfMonth(date).withHour(0).withMinute(0)
                     return actualDateStart == current
                 }
-                if (date > dateTime.value.getLastDayOfMonth()) return false
                 val current = dateTime.value.withDayOfMonth(date)
                 return current.isAfter(startDate.value) && current.isBefore(endDate.value)
             }
