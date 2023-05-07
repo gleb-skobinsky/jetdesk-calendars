@@ -7,7 +7,6 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -28,7 +27,6 @@ import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
 import com.github.glebskobinsky.jetdeskcalendars.styles.getPointerCursor
 import java.time.LocalDateTime
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Suppress("FunctionName")
 internal fun TimeInput(
