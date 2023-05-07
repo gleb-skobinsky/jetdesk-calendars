@@ -19,7 +19,7 @@ import java.time.LocalDateTime
 
 @Composable
 @Suppress("FunctionName")
-fun CalendarSpanPopup(
+fun CalendarPopup(
     dateTime: MutableState<LocalDateTime>,
     dateHolder: MutableState<DateInput>,
     groundFieldFocusRequester: FocusRequester,

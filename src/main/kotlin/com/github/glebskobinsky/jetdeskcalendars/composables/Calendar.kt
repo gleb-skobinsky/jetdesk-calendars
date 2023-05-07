@@ -107,7 +107,10 @@ fun Calendar(
                 groundFieldFocusRequester = groundFieldFocusRequester,
                 popupOpened = popupOpened,
                 windowState = windowState,
-                onDateSelected = onDateSelected
+                errorMessage = errorMessage,
+                locale = locale,
+                onDateSelected = onDateSelected,
+                background = background
             )
         }
     }

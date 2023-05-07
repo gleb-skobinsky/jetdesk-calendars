@@ -2,6 +2,8 @@ package com.github.glebskobinsky.jetdeskcalendars.composables
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,9 +21,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.glebskobinsky.jetdeskcalendars.dateTypes.DateInput
+import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.getApplyText
 import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.isValidHour
 import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.isValidMinute
 import com.github.glebskobinsky.jetdeskcalendars.stringAnnotation.toTimeInt
+import com.github.glebskobinsky.jetdeskcalendars.styles.DateInputDefaults
+import com.github.glebskobinsky.jetdeskcalendars.styles.getPointerCursor
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -32,7 +37,10 @@ internal fun TimeInput(
     popupOpened: MutableState<Boolean>,
     groundFieldFocusRequester: FocusRequester,
     windowState: MutableState<CalendarWindowState>,
+    errorMessage: MutableState<String?>,
+    locale: DateInputDefaults.DateInputLocale,
     onDateSelected: (List<LocalDateTime?>) -> Unit,
+    background: Color
 ) {
     val hourField = remember {
         mutableStateOf(
@@ -49,16 +57,20 @@ internal fun TimeInput(
     val currentlyFocusedField = remember { mutableStateOf(FocusedField.HOUR) }
     rememberCoroutineScope()
     val commonModifier = Modifier
+        /*
         .onKeyEvent {
             if (it.key == Key.Enter && it.type == KeyEventType.KeyDown) {
                 dateHolder.value.selectHourAndMinute(hourField.value.text.toTimeInt(), minuteField.value.text.toTimeInt())
                 onDateSelected(dateHolder.value.getResult())
-                popupOpened.value = false
                 groundFieldFocusRequester.requestFocus()
+                errorMessage.value = null
                 windowState.value = CalendarWindowState.CALENDAR
+                popupOpened.value = false
                 false
             } else false
         }
+         */
+    Column {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -123,6 +135,27 @@ internal fun TimeInput(
                     focusRequesterMinutes.requestFocus()
                 }
             }
+        }
+    }
+        Button(
+            onClick = {
+                dateHolder.value.selectHourAndMinute(hourField.value.text.toTimeInt(), minuteField.value.text.toTimeInt())
+                onDateSelected(dateHolder.value.getResult())
+                groundFieldFocusRequester.requestFocus()
+                windowState.value = CalendarWindowState.CALENDAR
+                errorMessage.value = null
+                popupOpened.value = false
+            },
+            colors = ButtonDefaults.buttonColors(backgroundColor = background),
+            modifier = Modifier
+                .fillMaxWidth()
+                .getPointerCursor()
+        ) {
+            Text(
+                getApplyText(locale),
+                color = Color.White,
+                modifier = Modifier
+            )
         }
     }
 }

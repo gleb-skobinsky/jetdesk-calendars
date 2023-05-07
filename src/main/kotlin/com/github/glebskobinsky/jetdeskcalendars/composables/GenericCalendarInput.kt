@@ -89,6 +89,7 @@ fun GenericCalendarInput(
                             .size(18.dp, 18.dp)
                             .getPointerCursor()
                             .clickable {
+                                println("month icon clicked")
                                 popupOpened.value = !popupOpened.value
                             },
                         tint = iconColor
@@ -160,7 +161,7 @@ fun GenericCalendarInput(
             },
             focusable = true
         ) {
-            CalendarSpanPopup(
+            CalendarPopup(
                 dateTime = dateTime,
                 dateHolder = dateHolder,
                 popupOpened = popupOpened,
