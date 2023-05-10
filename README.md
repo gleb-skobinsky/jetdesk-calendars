@@ -26,4 +26,16 @@ Interface view:
 
 ![Date picker](https://raw.githubusercontent.com/gleb-skobinsky/jetdesk-calendars/main/images/date.png)
 
-3. Single date-time picker: sorry, not yet implemented!
+3. Single date-time picker: allows to select a date and specify time in hours and minutes
+
+**Usage:**
+```kotlin
+DateTimePicker { (dateTime) ->
+    println(dateTime)
+}
+```
+
+Interface view:
+
+![Datetime picker](https://raw.githubusercontent.com/gleb-skobinsky/jetdesk-calendars/main/images/datetime.png)
+
